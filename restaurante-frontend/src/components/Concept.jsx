@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import fish from '../assets/fish.png';
+import veggie from '../assets/veggie.png';
 
 export default function Concept() {
+  const [isSwapped, setIsSwapped] = useState(false);
+
   return (
     <section id="concepto" className="section-concepto">
       <div className="concepto-grid">
@@ -9,15 +13,27 @@ export default function Concept() {
           <h2>素材と向き合う</h2>
           <div className="linea-decorativa"></div>
           <p className="poetic-text">
-            正しく熟成された魚はまるで新しい魚食の世界⁡<br/>島でとれた海と山の幸を安心安全な食事で届けたい
+            正しく熟成された魚はまるで新しい魚食の世界<br/>
+            島でとれた海と山の幸を安心安全な食事で届けたい
           </p>
         </div>
-        <div className="concepto-imagen">
-          <img 
-            src={fish} 
-            alt="丸良の仕入れ" 
-          />
+
+        {/* トランプ入れ替えカード */}
+        <div
+          className={`card-stack ${isSwapped ? 'is-swapped' : ''}`}
+          onMouseEnter={() => setIsSwapped(true)}
+          onMouseLeave={() => setIsSwapped(false)}
+        >
+          {/* 1枚目（手前） */}
+          <div className="card-item card-front">
+            <img src={fish} alt="丸良の仕入れ" />
+          </div>
+          {/* 2枚目（後ろ・薄く見えている） */}
+          <div className="card-item card-back">
+            <img src={veggie} alt="丸良の素材" />
+          </div>
         </div>
+
       </div>
     </section>
   );

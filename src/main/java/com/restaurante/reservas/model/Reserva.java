@@ -1,10 +1,11 @@
 package com.restaurante.reservas.model;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,9 +29,6 @@ public class Reserva {
     private String nombreCliente;
 
     @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
     private LocalDate fecha;
 
     @Column(nullable = false)
@@ -40,4 +38,12 @@ public class Reserva {
     private Integer cantidadPersonas;
 
     private String comentarios;
+
+    public enum Status { PENDING, CONFIRMED, CANCELLED }
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status = Status.PENDING;
+
+    
 }

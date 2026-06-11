@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-brand">志賀島「丸良」</div>
+      <div className="footer-brand">たべもの処 まるりょう</div>
       <div className="footer-info-grid">
         <div className="footer-info-block">
           <h4>【 営業時間 】</h4>
@@ -11,8 +11,8 @@ export default function Footer() {
         </div>
         <div className="footer-info-block">
           <h4>【 地図 】</h4>
-          <p>〒811-0323</p>
-          <p>福岡市東区志賀島468-1</p>
+          <p>〒811-0323 福岡市東区志賀島468-1</p>
+          <p>TEL: 0926036498</p>
           <p className="footer-instagram">Instagram: @tabemono_maruryou</p>
         </div>
       </div>

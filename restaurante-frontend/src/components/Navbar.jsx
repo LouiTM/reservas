@@ -19,11 +19,18 @@ export default function Navbar({ onReservaClick }) {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="nav-logo-container">
-        <span className="nav-logo-text">丸良</span>
+        <span
+          className="nav-logo-text"
+          onClick={() => {
+            window.scrollTo(0, 0);
+            window.location.reload();
+          }}
+          style={{ cursor: 'pointer' }}>たべもの処 まるりょう</span>
       </div>
       <div className="nav-links">
         <a href="#concepto">一、心</a>
         <a href="#menu">二、味</a>
+        <a href="#skill">三、技</a>
         <button onClick={onReservaClick} className="btn-nav-reserva">
           ご予約
         </button>
