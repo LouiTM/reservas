@@ -1,0 +1,247 @@
+:root {
+  --color-fondo: #fdfbf7;        /* 上品な白木や絹を思わせる、温かみのある生成り */
+  --color-texto: #261e16;        /* 数寄屋造りの古材や漆のような、深い銘木の渋茶（焦げ茶） */
+  --color-wood-mid: #5c4632;     /* 温かみのある欅（けやき）や杉の木製茶色 */
+  --color-wood-light: #a68b6d;   /* 檜（ひのき）のカウンターをイメージしたウッドゴールド */
+  --color-wood-bg: #f4eee4;      /* ほんのり木肌を感じる、セクション用の淡い茶ベージュ */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: "Source Han Serif JP", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .nav-logo-text {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+}
+
+/* --- オープニング・トランジション（特大＆ゆったり広がる間） --- */
+.opening-screen {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-fondo); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOutBackground 4s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+  pointer-events: none; 
+}
+
+.opening-text-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.opening-text-horizontal {
+  /* ★通常の横書きに戻す（デフォルト） */
+  writing-mode: horizontal-tb; 
+  
+  /* ★サイズをさらにでかく（5rem から 6.5rem へ限界突破） */
+  font-size: 3.8rem; 
+  font-weight: 300; 
+  
+  /* ★文字の間隔をさらにあけて贅沢に */
+  letter-spacing: 1.2em; 
+  
+  /* ★超重要：巨大なletter-spacingによる左ズレを相殺し、完璧に真ん中に配置する数値 */
+  text-indent: 1.8em; 
+  
+  color: var(--color-texto);
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap; /* 画面サイズが変わっても絶対に改行させないお守り */
+  opacity: 0;
+  animation: fadeInOutText 3.2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+@keyframes fadeOutBackground { 0% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes fadeInOutText {
+  /* 横書きに合わせた自然なフェードイン・アウト（少しだけ上に浮き上がります） */
+  0% { opacity: 0; transform: translateY(40px); filter: blur(12px); }
+  35% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  65% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-30px); filter: blur(8px); }
+}
+
+/* --- ナビゲーション（完全に独立した和の帯） --- */
+.navbar {
+  position: fixed;
+  top: 0; 
+  width: 100%;
+  height: 90px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 80px; 
+  background-color: var(--color-fondo); 
+  z-index: 1000;
+  border-bottom: 1px solid rgba(38, 30, 22, 0.05); 
+}
+
+.navbar-scrolled {
+  box-shadow: 0 4px 20px rgba(38, 30, 22, 0.03);
+}
+
+.nav-logo-text { font-size: 1.6rem; letter-spacing: 0.4em; font-weight: 300; color: var(--color-texto); }
+.nav-links a { text-decoration: none; color: var(--color-texto); margin-right: 40px; font-size: 0.85rem; letter-spacing: 0.2em; transition: 0.3s; }
+.nav-links a:hover { color: var(--color-wood-light); }
+.btn-nav-reserva {
+  background: transparent; color: var(--color-texto); border: 1px solid var(--color-wood-light); 
+  padding: 8px 24px; cursor: pointer; font-size: 0.8rem; letter-spacing: 0.2em;
+  font-family: inherit; transition: 0.3s;
+}
+.btn-nav-reserva:hover { background-color: var(--color-wood-light); color: white; }
+
+/* --- ヒーローセクション（Navbarの下にピタッと配置） --- */
+.hero-section {
+  margin-top: 90px; 
+  height: calc(100vh - 90px); 
+  background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover; 
+  background-position: center;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute; 
+  inset: 0; 
+  background: linear-gradient(to right, rgba(38, 30, 22, 0.6), rgba(38, 30, 22, 0.15)); 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  padding: 0 12%;
+}
+
+.hero-title-vertical {
+  writing-mode: vertical-rl; 
+  font-size: 3.5rem;
+  letter-spacing: 0.5em;
+  color: white;
+  font-weight: 300;
+  text-shadow: 1px 1px 15px rgba(0,0,0,0.3);
+}
+
+.hero-content-right { 
+  color: white; 
+  text-align: right; 
+  margin-top: 0; 
+}
+
+.hero-subtitle { 
+  font-size: 1.25rem; 
+  letter-spacing: 0.3em; 
+  font-weight: 300; 
+  color: var(--color-fondo); 
+  margin: 0;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+
+/* --- セクションデザイン：一、心（間と白木トーン） --- */
+.section-concepto { 
+  padding: 200px 80px; 
+  max-width: 1100px; 
+  margin: 0 auto; 
+}
+.concepto-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 100px; align-items: center; }
+.section-tag { color: var(--color-wood-light); letter-spacing: 0.3em; font-size: 0.9rem; margin-bottom: 20px; font-weight: bold; }
+.concepto-texto h2 { font-size: 2rem; margin-top: 0; margin-bottom: 15px; font-weight: 300; }
+.linea-decorativa { width: 40px; height: 1px; background-color: var(--color-wood-light); margin-bottom: 40px; } 
+.poetic-text { line-height: 2.5; color: var(--color-texto); font-size: 1.05rem; letter-spacing: 0.15em; }
+.concepto-imagen img { width: 100%; height: 500px; object-fit: cover; border: 1px solid var(--color-wood-bg); }
+
+/* --- セクションデザイン：二、味（ギャラリー風お品書き） --- */
+.section-menu { 
+  padding: 200px 80px; 
+  background-color: var(--color-wood-bg); 
+  text-align: center; 
+}
+.section-menu h2 { font-size: 2rem; margin-top: 0; margin-bottom: 20px; font-weight: 300; }
+.menu-intro-text { font-size: 0.95rem; color: var(--color-wood-mid); letter-spacing: 0.15em; margin-bottom: 90px; }
+
+.menu-grid { display: flex; justify-content: center; gap: 80px; max-width: 1100px; margin: 0 auto; }
+.menu-item { width: 45%; text-align: center; }
+.menu-img-wrapper { overflow: hidden; width: 100%; height: 320px; border: 1px solid rgba(0,0,0,0.03); }
+.menu-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.menu-item:hover img { transform: scale(1.03); }
+.menu-item h3 { margin-top: 30px; font-size: 1.25rem; font-weight: 300; color: var(--color-texto); letter-spacing: 0.2em; }
+
+/* --- 【新規追加】セクションデザイン：三、ご予約（左フォーム / 右縦長写真） --- */
+.section-reserva { 
+  padding: 200px 80px; 
+  max-width: 1100px; 
+  margin: 0 auto;
+  background-color: var(--color-fondo); 
+}
+
+.reserva-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr; /* 壱の心（Concept）と黄金比を統一 */
+  gap: 100px;
+  align-items: start;
+}
+
+.reserva-texto-left h2 {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.reserva-poetic-text {
+  line-height: 2.2;
+  color: var(--color-texto);
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 40px;
+}
+
+.reserva-imagen-right {
+  width: 100%;
+}
+
+.reserva-imagen-right img {
+  width: 100%;
+  height: 650px; /* 縦長を強調する固定高 */
+  object-fit: cover;
+  border: 1px solid var(--color-wood-bg);
+}
+
+/* 予約フォーム内の重複タイトルや外枠を消して、白木の背景に溶け込ませる */
+.form-container {
+  max-width: 100% !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+.form-container h2, .form-subtitle {
+  display: none; /* App.jsx側のタイトルと重複するため非表示に */
+}
+
+/* --- フッター（深い焦げ茶の漆黒空間） --- */
+.footer { 
+  background-color: #1a140e; 
+  color: #a69c92; 
+  text-align: center; 
+  padding: 100px 20px; 
+  font-size: 0.85rem; 
+  line-height: 2.2;
+  letter-spacing: 0.15em;
+}
+.footer p:first-child { font-size: 1.2rem; color: var(--color-wood-bg); margin-bottom: 20px; font-weight: 300; letter-spacing: 0.3em; }
+.copyright { margin-top: 50px; color: #544d45; font-size: 0.75rem; }
