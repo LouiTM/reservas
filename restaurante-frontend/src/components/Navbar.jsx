@@ -23,9 +23,7 @@ export default function Navbar({ onReservaClick }) {
           className="nav-logo-text"
           onClick={() => {
             window.scrollTo(0, 0);
-            window.location.reload();
-          }}
-          style={{ cursor: 'pointer' }}>たべもの処 まるりょう</span>
+            window.location.reload();}}>たべもの処 まるりょう</span>
       </div>
       <div className="nav-links">
         <a href="#concepto">一、心</a>

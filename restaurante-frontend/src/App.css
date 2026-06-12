@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
 
 :root {
   --color-fondo: #fbfbfb;
@@ -113,17 +114,20 @@ h1, h2, h3, .nav-logo-text {
 }
 
 .nav-logo-text {
-  font-size: 1.4rem;
-  letter-spacing: 0.5em;
+  font-family: "Noto Serif JP", "Yu Mincho", "YuMincho", serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.6em;
   font-weight: 300;
   color: var(--color-texto);
+  cursor: pointer;
+  margin-left: -0.6em;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--color-wood-mid);
   margin-right: 40px;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   letter-spacing: 0.25em;
   transition: 0.4s;
   position: relative;
@@ -706,15 +710,18 @@ h1, h2, h3, .nav-logo-text {
 .nav-logo-text {
   font-size: 0.85rem;
   letter-spacing: 0.25em;
+  cursor: pointer;
 }
 .nav-links {
   display: flex;
   align-items: center;
   gap: 0;
 }
+
 .nav-links a {
-  display: none; /* 一、心 二、味 三、技 は非表示 */
+  display: none;
 }
+
 .btn-nav-reserva {
   padding: 6px 14px;
   font-size: 0.7rem;

@@ -13,8 +13,8 @@ export default function Concept() {
           <h2>素材と向き合う</h2>
           <div className="linea-decorativa"></div>
           <p className="poetic-text">
-            正しく熟成された魚はまるで新しい魚食の世界<br/>
-            島でとれた海と山の幸を安心安全な食事で届けたい
+            正しく熟成された魚はまるで新しい魚食の世界。<br/>
+            無添加にこだわり志賀島で無農薬・オーガニックで育てられた野菜たちも加わり、心にも体にも嬉しい地元志賀島の旬を安心安全な食事で届けたい。
           </p>
         </div>
 

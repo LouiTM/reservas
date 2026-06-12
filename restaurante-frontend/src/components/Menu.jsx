@@ -1,6 +1,7 @@
 import sasimi from '../assets/sasimi.png';
 import sushi from '../assets/sushi.png';
-
+import marutei from '../assets/marutei.png';
+import don from '../assets/don.png';
 export default function Menu() {
   return (
     <section id="menu" className="section-menu">
@@ -13,56 +14,56 @@ export default function Menu() {
           <div className="menu-img-wrapper">
             <img 
               src={sushi} 
-              alt="特選おまかせ握り" 
+              alt="寿司ランチセット" 
             />
           </div>
-          <h3>特選おまかせ握り</h3>
+          <h3>寿司ランチセット</h3>
         </div>
         
         <div className="menu-item">
           <div className="menu-img-wrapper">
             <img 
               src={sasimi} 
-              alt="極上 潮の逸品" 
+              alt="刺身定食" 
             />
           </div>
-          <h3>極上 潮の逸品料理</h3>
+          <h3>刺身定食</h3>
         </div>
         <div className="menu-item">
           <div className="menu-img-wrapper">
             <img 
-              src={sushi} 
-              alt="特選おまかせ握り" 
+              src={marutei} 
+              alt="まるりょう定食" 
             />
           </div>
-          <h3>特選おまかせ握り</h3>
+          <h3>まるりょう定食</h3>
         </div>
         <div className="menu-item">
           <div className="menu-img-wrapper">
             <img 
-              src={sushi} 
-              alt="特選おまかせ握り" 
+              src={marutei}
+              alt="軽ランチセット" 
             />
           </div>
-          <h3>特選おまかせ握り</h3>
+          <h3>軽ランチセット</h3>
         </div>
         <div className="menu-item">
           <div className="menu-img-wrapper">
             <img 
-              src={sushi} 
-              alt="特選おまかせ握り" 
+              src={don} 
+              alt="漁師丼" 
             />
           </div>
-          <h3>特選おまかせ握り</h3>
+          <h3>漁師丼</h3>
         </div>
         <div className="menu-item">
           <div className="menu-img-wrapper">
             <img 
-              src={sushi} 
-              alt="特選おまかせ握り" 
+              src={marutei} 
+              alt="単品メニュー数々" 
             />
           </div>
-          <h3>特選おまかせ握り</h3>
+          <h3>単品メニュー数々</h3>
         </div>
       </div>
     </section>

@@ -18,26 +18,27 @@ import lombok.Setter;
 @Table(name = "reservas")
 @Getter 
 @Setter 
-@NoArgsConstructor // Reemplaza al constructor vacío manual
+@NoArgsConstructor
 public class Reserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_cliente", nullable = false)
-    private String nombreCliente;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(nullable = false)
-    private LocalDate fecha;
+    private LocalDate date;
 
     @Column(nullable = false)
-    private LocalTime hora;
+    private LocalTime time;
 
-    @Column(name = "cantidad_personas", nullable = false)
-    private Integer cantidadPersonas;
+    @Column(name = "clientNo", nullable = false)
+    private Integer clientNo;
 
-    private String comentarios;
+    @Column(name = "comment")
+    private String comment;
 
     public enum Status { PENDING, CONFIRMED, CANCELLED }
 

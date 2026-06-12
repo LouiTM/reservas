@@ -111,11 +111,11 @@ export default function AdminDashboard() {
                 const isChanged = changes[r.id] !== undefined;
                 return (
                   <tr key={r.id} className={isChanged ? 'admin-row-changed' : ''}>
-                    <td>{r.nombreCliente}</td>
-                    <td>{r.fecha}</td>
-                    <td>{r.hora}</td>
-                    <td>{r.cantidadPersonas}名</td>
-                    <td className="admin-td-comment">{r.comentarios || '—'}</td>
+                    <td>{r.name}</td>
+                    <td>{r.date}</td>
+                    <td>{r.time}</td>
+                    <td>{r.clientNo}名</td>
+                    <td className="admin-td-comment">{r.comment || '—'}</td>
                     <td>
                       <select
                         className="admin-status-select"

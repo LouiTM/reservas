@@ -16,11 +16,11 @@ function needsConfirmation(dateStr, timeStr) {
 
 export default function FormularioReserva() {
   const [formData, setFormData] = useState({
-    nombreCliente: '',
-    fecha: '',
-    hora: '',
-    cantidadPersonas: 1,
-    comentarios: ''
+    name: '',
+    date: '',
+    time: '',
+    clientNo: 1,
+    comment: ''
   });
 
   const [mensaje, setMensaje] = useState('');
@@ -42,7 +42,7 @@ export default function FormularioReserva() {
       });
       if (response.ok) {
         setMensaje('ご予約が確定いたしました。ご来店を心よりお待ちしております。');
-        setFormData({ nombreCliente: '', fecha: '', hora: '', cantidadPersonas: 1, comentarios: '' });
+        setFormData({ name: '', date: '', time: '', clientNo: 1, comment: '' });
       } else {
         setMensaje('エラーが発生しました。お手数ですが再度お試しいただくか、お電話にてご連絡ください。');
       }
@@ -54,7 +54,7 @@ export default function FormularioReserva() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (needsConfirmation(formData.fecha, formData.hora)) {
+    if (needsConfirmation(formData.date, formData.time)) {
       setShowConfirm(true);
     } else {
       submitReservation();
@@ -66,7 +66,7 @@ export default function FormularioReserva() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>お名前（フルネーム）</label>
-          <input type="text" name="nombreCliente" value={formData.nombreCliente} onChange={handleChange} required />
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         </div>
 
         <div className="form-group row">
@@ -74,8 +74,8 @@ export default function FormularioReserva() {
             <label>ご来店日</label>
             <input
               type="date"
-              name="fecha"
-              value={formData.fecha}
+              name="date"
+              value={formData.date}
               onChange={handleChange}
               min={(() => {
                 const tomorrow = new Date();
@@ -87,18 +87,18 @@ export default function FormularioReserva() {
           </div>
           <div>
             <label>ご来店時間</label>
-            <input type="time" name="hora" value={formData.hora} onChange={handleChange} required />
+            <input type="time" name="time" value={formData.time} onChange={handleChange} required />
           </div>
         </div>
 
         <div className="form-group">
           <label>ご予約人数</label>
-          <input type="number" name="cantidadPersonas" min="1" value={formData.cantidadPersonas} onChange={handleChange} required />
+          <input type="number" name="clientNo" min="1" value={formData.clientNo} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label>ご要望・アレルギー等（任意）</label>
-          <textarea name="comentarios" value={formData.comentarios} onChange={handleChange} placeholder="お席のご希望やアレルギーがございましたらご記入ください。" />
+          <textarea name="comment" value={formData.comment} onChange={handleChange} placeholder="お席のご希望やアレルギーがございましたらご記入ください。" />
         </div>
 
         <button type="submit" className="btn-submit">この内容で予約する</button>
