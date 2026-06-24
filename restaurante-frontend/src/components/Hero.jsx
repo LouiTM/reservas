@@ -6,8 +6,8 @@ export default function Hero() {
       <div className="hero-overlay">
         <div className="hero-content-left">
           <h2 className="hero-title-vertical">
-            <span class="hero-title-span-right" style={{ display: 'block' }}>海が主役</span>
-            <span class="hero-title-span-left" style={{ display: 'block' }}>今日も</span>
+            <span className="hero-title-span-right" style={{ display: 'block' }}>海が主役</span>
+            <span className="hero-title-span-left" style={{ display: 'block' }}>今日も</span>
           </h2>
         </div>
         <div className="hero-content-right">

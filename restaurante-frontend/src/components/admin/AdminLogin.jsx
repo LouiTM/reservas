@@ -1,20 +1,34 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ADMIN_PASSWORD = 'maruryou2026'; // ← 好きなパスワードに変更
+const API_BASE = import.meta.env.VITE_API_BASE;
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      sessionStorage.setItem('admin_auth', 'true');
-      navigate('/admin/dashboard');
-    } else {
-      setError('パスワードが正しくありません。');
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      if (res.ok) {
+        sessionStorage.setItem('admin_auth', 'true');
+        navigate('/admin/dashboard');
+      } else {
+        setError('パスワードが正しくありません。');
+      }
+    } catch {
+      setError('サーバーに接続できませんでした。');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,9 +49,11 @@ export default function AdminLogin() {
             />
           </div>
           {error && <p className="admin-error">{error}</p>}
-          <button type="submit" className="admin-btn-login">ログイン</button>
+          <button type="submit" className="admin-btn-login" disabled={loading}>
+            {loading ? '確認中...' : 'ログイン'}
+          </button>
         </form>
       </div>
     </div>
   );
-}
+}

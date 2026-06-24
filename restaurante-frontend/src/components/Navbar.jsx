@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({ onReservaClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   // スクロール位置を監視して、ナビゲーションの見た目を変える
   useEffect(() => {
@@ -22,8 +24,8 @@ export default function Navbar({ onReservaClick }) {
         <span
           className="nav-logo-text"
           onClick={() => {
-            window.scrollTo(0, 0);
-            window.location.reload();}}>たべもの処 まるりょう</span>
+            navigate('/');
+            window.scrollTo(0, 0);}}>たべもの処 まるりょう</span>
       </div>
       <div className="nav-links">
         <a href="#concepto">一、心</a>

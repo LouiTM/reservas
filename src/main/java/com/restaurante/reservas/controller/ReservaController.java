@@ -1,8 +1,8 @@
 package com.restaurante.reservas.controller;
 
 import com.restaurante.reservas.model.Reserva;
-import com.restaurante.reservas.repository.ReservaRepository; // <-- ¡Este import es vital!
-import org.springframework.beans.factory.annotation.Autowired;
+import com.restaurante.reservas.repository.ReservaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservas")
-@CrossOrigin(origins = "http://localhost:5173")
+@RequiredArgsConstructor
 public class ReservaController {
 
-    @Autowired
-    private ReservaRepository reservaRepository;
+    private final ReservaRepository reservaRepository;
 
     @PostMapping
     public ResponseEntity<Reserva> crearReserva(@RequestBody Reserva reserva) {

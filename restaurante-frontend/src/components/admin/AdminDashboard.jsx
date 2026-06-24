@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE = import.meta.env.VITE_API_BASE;
+
 const STATUS_LABELS = {
   PENDING:   '未確認',
   CONFIRMED: '確認済',
@@ -32,7 +34,7 @@ export default function AdminDashboard() {
 
   const fetchReservas = () => {
     setLoading(true);
-    fetch('http://localhost:8080/api/reservas')
+    fetch(`${API_BASE}/api/reservas`)
       .then(res => res.json())
       .then(data => {
         setReservas(data);
@@ -50,7 +52,7 @@ export default function AdminDashboard() {
   try {
     // 全ての変更をまずDBに反映（キャンセル含む）
     for (const [id, status] of Object.entries(changes)) {
-      await fetch(`http://localhost:8080/api/reservas/${id}/status`, {
+      await fetch(`${API_BASE}/api/reservas/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
@@ -60,7 +62,7 @@ export default function AdminDashboard() {
     // キャンセルが1件でもあれば全キャンセルを一括削除
     const hasCancel = Object.values(changes).some(s => s === 'CANCELLED');
     if (hasCancel) {
-      await fetch('http://localhost:8080/api/reservas/cancelled', {
+      await fetch(`${API_BASE}/api/reservas/cancelled`, {
         method: 'DELETE',
       });
     }
@@ -69,8 +71,9 @@ export default function AdminDashboard() {
     fetchReservas();
   } catch (error) {
     console.error('更新失敗:', error);
+  } finally {
+    setSaving(false);
   }
-  setSaving(false);
 };
 
   const handleLogout = () => {

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+
+const API_BASE = import.meta.env.VITE_API_BASE;
 
 function isHolidayOrWeekend(dateStr) {
   const date = new Date(dateStr);
@@ -14,35 +16,38 @@ function needsConfirmation(dateStr, timeStr) {
   return hour !== 11;
 }
 
-export default function FormularioReserva() {
-  const [formData, setFormData] = useState({
-    name: '',
-    date: '',
-    time: '',
-    clientNo: 1,
-    comment: ''
-  });
+const INITIAL_FORM = { name: '', date: '', time: '', clientNo: 1, comment: '' };
 
+export default function FormularioReserva() {
+  const [formData, setFormData] = useState(INITIAL_FORM);
   const [mensaje, setMensaje] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
 
+  // 明日の日付は1回だけ計算する
+  const minDate = useMemo(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  }, []);
+
+  // 関数型更新でクロージャ問題を回避
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const submitReservation = async () => {
     setShowConfirm(false);
     setMensaje('ご予約を送信中...');
     try {
-      const response = await fetch('http://localhost:8080/api/reservas', {
+      const response = await fetch(`${API_BASE}/api/reservas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
       if (response.ok) {
         setMensaje('ご予約が確定いたしました。ご来店を心よりお待ちしております。');
-        setFormData({ name: '', date: '', time: '', clientNo: 1, comment: '' });
+        setFormData(INITIAL_FORM);
       } else {
         setMensaje('エラーが発生しました。お手数ですが再度お試しいただくか、お電話にてご連絡ください。');
       }
@@ -77,11 +82,7 @@ export default function FormularioReserva() {
               name="date"
               value={formData.date}
               onChange={handleChange}
-              min={(() => {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                return tomorrow.toISOString().split('T')[0];
-              })()}
+              min={minDate}
               required
             />
           </div>
@@ -126,4 +127,4 @@ export default function FormularioReserva() {
       )}
     </div>
   );
-}
+}
