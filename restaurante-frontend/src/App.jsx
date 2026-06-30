@@ -38,8 +38,8 @@ function App() {
             <div className="opening-screen">
               <div className="opening-text-container">
                 <h1 className="opening-text-horizontal">
-                  <span>今日も</span>
-                  <span>海が主役</span>
+                  <span>このサイトは本店とは</span>
+                  <span>関係がありません</span>
                 </h1>
               </div>
             </div>
