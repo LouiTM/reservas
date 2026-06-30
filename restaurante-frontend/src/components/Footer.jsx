@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'; // ← ★これを一番上に追加します
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -16,7 +18,14 @@ export default function Footer() {
           <p className="footer-instagram">Instagram: @tabemono_maruryou</p>
         </div>
       </div>
-      <p className="copyright">© 2026 丸良. All Rights Reserved.</p>
+      
+      <p className="copyright">
+        © 2026 丸良. All Rights Reserved.
+        {/* ▼ お店の人だけが分かる、目立たない管理画面リンク ▼ */}
+        <Link to="/admin" style={{ color: '#2a2018', textDecoration: 'none', marginLeft: '16px' }}>
+          Admin
+        </Link>
+      </p>
     </footer>
   );
 }
